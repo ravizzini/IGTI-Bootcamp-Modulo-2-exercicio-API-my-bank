@@ -1,3 +1,5 @@
+///criação do endoint e uso do modulo filesystem para criar aquivo accounts.json
+
 var express = require('express');
 var fs = require('fs'); //importando modulo filesystem
 var app = express();
