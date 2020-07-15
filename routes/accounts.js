@@ -3,8 +3,6 @@ var fs = require('fs');
 
 var router = express.Router(); //cria objeto router para substituir app uma vez que todos endpoint respondem na mesma url
 
-global.fileName = 'accounts.json'; //criação de variavel global
-
 router.post('/', (req, res) => {
   //pegar parametros que estão sendo enviados
   let account = req.body;
