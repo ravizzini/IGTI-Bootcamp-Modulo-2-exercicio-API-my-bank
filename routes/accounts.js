@@ -23,8 +23,11 @@ router.post('/', async (req, res) => {
 
     //res.end(); // retorna status 200
     res.status(200).send('Conta cadastrada com sucesso');
+
+    logger.info(`POST /account - ${JSON.stringify(account)}`);
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`POST /account -${err.message}`);
   }
 });
 
@@ -37,8 +40,12 @@ router.get('/', async (_, res) => {
     let json = JSON.parse(data);
     delete json.nextId;
     res.send(json);
+
+    logger.info('GET /account');
   } catch (error) {
     res.status(400).send({ error: error.message });
+
+    logger.error(`GET /account -${err.message}`);
   }
 });
 
@@ -54,11 +61,16 @@ router.get('/:id', async (req, res) => {
 
     if (account) {
       res.send(account);
+
+      logger.info(`GET /account/:id - ${JSON.stringify(account)}`);
     } else {
       res.status(200).send('Conta não localizada');
+
+      logger.info('GET /account/:id');
     }
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`GET /account/:id -${err.message}`);
   }
 });
 
@@ -83,8 +95,12 @@ router.delete('/:id', async (req, res) => {
 
     //res.end(); // retorna status 200
     res.status(200).send('Conta removida com sucesso');
+
+    logger.info(`DELETE /account/:id - ${req.params.id}`);
   } catch (error) {
     res.status(400).send({ error: error.message });
+
+    logger.error(`DELETE /account -${err.message}`);
   }
 });
 
@@ -110,8 +126,12 @@ router.put('/', async (req, res) => {
 
     res.status(200).send('Conta atualizada');
     //res.end(); // retorna status 200
+
+    logger.info(`PUT /account - ${JSON.stringify(newAccount)}`);
   } catch (error) {
     res.status(400).send({ error: error.message });
+
+    logger.error(`PUT /account -${err.message}`);
   }
 });
 
@@ -141,8 +161,11 @@ router.post('/transaction', async (req, res) => {
 
     res.send(json.accounts[index]);
     //res.end(); // retorna status 200
-  } catch (error) {
-    res.status(400).send({ error: error.message });
+    logger.info(`POST /account/transaction - ${JSON.stringify(params)}`);
+  } catch (err) {
+    res.status(400).send({ error: err.message });
+
+    logger.error(`POST /account/transaction -${err.message}`);
   }
 });
 
