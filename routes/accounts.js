@@ -1,7 +1,13 @@
-var express = require('express');
-var fs = require('fs').promises;
+import express from 'express';
 
-var router = express.Router(); //cria objeto router para substituir app uma vez que todos endpoint respondem na mesma url
+//const fs = require('fs').promises;
+import { promises } from 'fs';
+
+//criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
+
+const router = express.Router(); //cria objeto router para substituir app uma vez que todos endpoint respondem na mesma url
+const readFile = promises.readFile;
+const writeFile = promises.writeFile;
 
 router.post('/', async (req, res) => {
   //pegar parametros que estão sendo enviados
@@ -9,7 +15,7 @@ router.post('/', async (req, res) => {
 
   try {
     //data da callback passa a ser retornado pela promisse caso ela tenha sucesso. Erro retornado no catch
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     let json = JSON.parse(data); // le o arquivo
     //console.log(json);
@@ -19,7 +25,7 @@ router.post('/', async (req, res) => {
     json.accounts.push(account); // inserindo objeto no final do array account
 
     //escrita do conteudo. Como já foi lido podemos usar o writeFile e reescrever o novo arquivo
-    await fs.writeFile(global.fileName, JSON.stringify(json));
+    await writeFile(global.fileName, JSON.stringify(json));
 
     //res.end(); // retorna status 200
     res.status(200).send('Conta cadastrada com sucesso');
@@ -34,7 +40,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (_, res) => {
   try {
     //ler o arquivo
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     // criando variavel json para responder data usando a conversão parse e remover o next id com delete json.nextID
     let json = JSON.parse(data);
@@ -51,7 +57,7 @@ router.get('/', async (_, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     // criando variavel json para responder data usando a conversão parse e remover o next id com delete json.nextID
     let json = JSON.parse(data);
@@ -76,7 +82,7 @@ router.get('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     // criando variavel json para responder data usando a conversão parse e remover o next id com delete json.nextID
 
@@ -91,7 +97,7 @@ router.delete('/:id', async (req, res) => {
 
     //escreve o novo arquivo
 
-    await fs.writeFile(global.fileName, JSON.stringify(json));
+    await writeFile(global.fileName, JSON.stringify(json));
 
     //res.end(); // retorna status 200
     res.status(200).send('Conta removida com sucesso');
@@ -111,7 +117,7 @@ router.put('/', async (req, res) => {
     //pegar parametros que estão sendo enviados
     let newAccount = req.body;
 
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     let json = JSON.parse(data); //Lê a informação do arquivo
 
@@ -122,7 +128,7 @@ router.put('/', async (req, res) => {
     json.accounts[oldIndex].name = newAccount.name; //altera a posição do registro com os valores recebidos da requisição
     json.accounts[oldIndex].balance = newAccount.balance;
 
-    await fs.writeFile(global.fileName, JSON.stringify(json));
+    await writeFile(global.fileName, JSON.stringify(json));
 
     res.status(200).send('Conta atualizada');
     //res.end(); // retorna status 200
@@ -141,7 +147,7 @@ router.post('/transaction', async (req, res) => {
   try {
     let params = req.body;
 
-    let data = await fs.readFile(global.fileName, 'utf8');
+    let data = await readFile(global.fileName, 'utf8');
 
     // let json = JSON.parse(data); //Lê a informação do arquivo
 
@@ -157,7 +163,7 @@ router.post('/transaction', async (req, res) => {
 
     json.accounts[index].balance += params.value;
 
-    await fs.writeFile(global.fileName, JSON.stringify(json));
+    await writeFile(global.fileName, JSON.stringify(json));
 
     res.send(json.accounts[index]);
     //res.end(); // retorna status 200
@@ -169,4 +175,5 @@ router.post('/transaction', async (req, res) => {
   }
 });
 
-module.exports = router;
+//module.exports = router;
+export default router; //pesquisar outras formar de exportar variaveis. Aqui exportamos o modulo inteiro.
