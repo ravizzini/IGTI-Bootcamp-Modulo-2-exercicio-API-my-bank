@@ -1,0 +1,9 @@
+2020-07-15T22:06:44.405Z [my-bank-api] info: API Started
+2020-07-15T22:07:58.944Z [my-bank-api] info: PUT /account - {"id":5,"name":"Rafael Souto","balance":10000}
+2020-07-15T22:08:15.309Z [my-bank-api] info: POST /account/transaction - {"id":5,"value":-2090}
+2020-07-15T22:21:48.634Z [my-bank-api] info: API Started
+2020-07-15T22:21:57.991Z [my-bank-api] info: GET /account
+2020-07-15T22:22:18.294Z [my-bank-api] info: POST /account - {"id":6,"name":"Felipe Bastos","balance":5000}
+2020-07-15T22:22:38.523Z [my-bank-api] info: POST /account/transaction - {"id":5,"value":-10}
+2020-07-15T22:24:26.491Z [my-bank-api] info: API Started
+2020-07-15T22:25:27.443Z [my-bank-api] info: API Started

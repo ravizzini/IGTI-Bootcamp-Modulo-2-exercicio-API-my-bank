@@ -1,8 +1,21 @@
-const express = require('express');
-const fs = require('fs').promises; //importando modulo filesystem
+// Utilização do módulo experimental ES Modules para importação. É necessário configurar no package e ao executar a API usar nodemon --experimental-modules ./index.js
+//Para realizar debug em experimental modules temos que adicionar flag "runtimeArgs": ["--experimental-modules"] no launch.json
+
+import express from 'express';
+//const express = require('express');
+import { promises } from 'fs';
+//const fs = require('fs').promises; //invocando método nativo do node  filesystem
+import winston from 'winston';
+//const winston = require('winston');
+
+import accountsRouter from './routes/accounts.js';
+//const accountsRouter = require('./routes/accounts.js');
+
+//criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
+const readFile = promises.readFile;
+const writeFile = promises.writeFile;
+
 const app = express();
-const accountsRouter = require('./routes/accounts.js');
-const winston = require('winston');
 
 global.fileName = 'accounts.json'; //criação de variavel global
 
@@ -35,7 +48,7 @@ app.listen(3000, async () => {
 
   //try-catch com async await try tenta ler o arquivo com readFile se não conseguir cair no catch(error) e cria um novo arquivo
   try {
-    await fs.readFile(global.fileName, 'utf8');
+    await readFile(global.fileName, 'utf8');
     logger.info('API Started');
   } catch (error) {
     const initialJson = {
@@ -43,10 +56,8 @@ app.listen(3000, async () => {
       accounts: [],
     };
 
-    fs.writeFile(global.fileName, JSON.stringify(initialJson)).catch(
-      (error) => {
-        logger.error(error);
-      }
-    );
+    writeFile(global.fileName, JSON.stringify(initialJson)).catch((error) => {
+      logger.error(error);
+    });
   }
 });

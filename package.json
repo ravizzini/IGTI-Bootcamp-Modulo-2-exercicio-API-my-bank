@@ -18,5 +18,6 @@
       "*.log",
       "*.json"
     ]
-  }
+  },
+  "type": "module"
 }
