@@ -3,7 +3,7 @@ var fs = require('fs');
 
 var router = express.Router(); //cria objeto router para substituir app uma vez que todos endpoint respondem na mesma url
 
-global.fileName = 'accounts.json'; //criação de variavel global
+
 
 router.post('/', (req, res) => {
   //pegar parametros que estão sendo enviados
@@ -160,16 +160,15 @@ router.post('/transaction', (req, res) => {
       // let json = JSON.parse(data); //Lê a informação do arquivo
 
       let json = JSON.parse(data);
+      //método finfIndex encontra o índice anterior ao registro que desejamos alterar
+
       let index = json.accounts.findIndex(
         (account) => account.id === params.id
       );
 
-      // let index = json.accounts.findIndex(
-      //   (account) => account.id === params.id
-      // ); //método dinfIndex encontra o índice anterior ao registro que desejamos alterar
-
       // prettier-ignore
       if ((params.value < 0) && ((json.accounts[index].balance + params.value) < 0)) {
+      // prettier-enable
         throw new Error("Não há saldo suficiente.");
       }
 

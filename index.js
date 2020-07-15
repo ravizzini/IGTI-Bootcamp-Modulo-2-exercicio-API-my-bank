@@ -3,6 +3,8 @@ var fs = require('fs'); //importando modulo filesystem
 var app = express();
 var accountsRouter = require('./routes/accounts.js');
 
+global.fileName = 'accounts.json'; //criação de variavel global
+
 app.use(express.json());
 app.use('/account', accountsRouter); //informa que deve utilizar o router
 
