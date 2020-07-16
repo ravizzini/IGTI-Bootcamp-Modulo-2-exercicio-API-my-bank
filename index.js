@@ -15,7 +15,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './doc.js';
 
-import cors from 'cors';
+//import cors from 'cors';
 
 //criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
 const readFile = promises.readFile;
