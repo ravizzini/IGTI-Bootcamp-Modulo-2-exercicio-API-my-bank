@@ -9,3 +9,10 @@
 2020-07-15T22:25:27.443Z [my-bank-api] info: API Started
 2020-07-16T00:58:17.979Z [my-bank-api] info: API Started
 2020-07-16T01:07:48.576Z [my-bank-api] info: API Started
+2020-07-16T01:25:06.168Z [my-bank-api] info: API Started
+2020-07-16T01:25:48.866Z [my-bank-api] info: GET /account
+2020-07-16T01:26:08.392Z [my-bank-api] info: GET /account
+2020-07-16T01:26:52.614Z [my-bank-api] info: GET /account
+2020-07-16T01:26:57.544Z [my-bank-api] info: GET /account
+2020-07-16T01:30:27.117Z [my-bank-api] info: GET /account
+2020-07-16T01:33:59.762Z [my-bank-api] info: API Started

@@ -1,4 +1,6 @@
-export const swaggerDocument = {
+//prettier-ignore
+
+const swaggerDocument = {
     "swagger": "2.0",
     "info": {
       "description": "My Bank API description",
@@ -85,3 +87,5 @@ export const swaggerDocument = {
       }
     }
   }
+
+export default swaggerDocument;
