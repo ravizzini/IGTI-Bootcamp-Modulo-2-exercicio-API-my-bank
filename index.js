@@ -11,6 +11,10 @@ import winston from 'winston';
 import accountsRouter from './routes/accounts.js';
 //const accountsRouter = require('./routes/accounts.js');
 
+import swaggerUi from 'swagger-ui-express';
+
+import { swaggerDocument } from './doc.js';
+
 //criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
 const readFile = promises.readFile;
 const writeFile = promises.writeFile;
@@ -42,6 +46,8 @@ global.logger = winston.createLogger({
 
 app.use(express.json());
 app.use('/account', accountsRouter); //informa que deve utilizar o router
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(3000, async () => {
   //verificar se existe objeto json se não existir criar json com a estrutura que definirmos. Melhor lugar para verificar é quando a api sobe.
