@@ -16,3 +16,10 @@
 2020-07-16T01:26:57.544Z [my-bank-api] info: GET /account
 2020-07-16T01:30:27.117Z [my-bank-api] info: GET /account
 2020-07-16T01:33:59.762Z [my-bank-api] info: API Started
+2020-07-16T01:34:41.726Z [my-bank-api] info: API Started
+2020-07-16T01:35:29.088Z [my-bank-api] info: GET /account
+2020-07-16T01:37:57.712Z [my-bank-api] info: API Started
+2020-07-16T01:39:41.799Z [my-bank-api] info: API Started
+2020-07-16T01:42:19.611Z [my-bank-api] info: GET /account
+2020-07-16T01:42:52.561Z [my-bank-api] info: POST /account - {"id":7,"name":"Teste via Documentação","balance":1000}
+2020-07-16T01:43:03.348Z [my-bank-api] info: GET /account
