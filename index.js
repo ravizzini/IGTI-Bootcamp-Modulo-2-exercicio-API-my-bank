@@ -13,7 +13,7 @@ import accountsRouter from './routes/accounts.js';
 
 import swaggerUi from 'swagger-ui-express';
 
-import { swaggerDocument } from './doc.js';
+import swaggerDocument from './doc.js';
 
 //criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
 const readFile = promises.readFile;
