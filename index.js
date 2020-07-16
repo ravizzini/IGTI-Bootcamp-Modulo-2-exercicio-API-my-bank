@@ -15,6 +15,8 @@ import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './doc.js';
 
+import cors from 'cors';
+
 //criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
 const readFile = promises.readFile;
 const writeFile = promises.writeFile;
@@ -48,6 +50,8 @@ app.use(express.json());
 app.use('/account', accountsRouter); //informa que deve utilizar o router
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+//app.use(cors());
 
 app.listen(3000, async () => {
   //verificar se existe objeto json se não existir criar json com a estrutura que definirmos. Melhor lugar para verificar é quando a api sobe.

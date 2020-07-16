@@ -3,6 +3,8 @@ import express from 'express';
 //const fs = require('fs').promises;
 import { promises } from 'fs';
 
+import cors from 'cors';
+
 //criação de variavel para uso de promises evita repetição de escrita toda vez que for usar promises
 
 const router = express.Router(); //cria objeto router para substituir app uma vez que todos endpoint respondem na mesma url
@@ -37,7 +39,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/', async (_, res) => {
+router.get('/', cors(), async (_, res) => {
   try {
     //ler o arquivo
     let data = await readFile(global.fileName, 'utf8');
